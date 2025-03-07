@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'fonts/line-icons.css' %}">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/slicknav.css' %} ">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slicknav.css' %}">
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/color-switcher.css' %}">
 
@@ -72,7 +72,7 @@
                     <span class="lni-menu"></span>
                     <span class="lni-menu"></span>
                 </button>
-                <a href="index-2.html" class="navbar-brand"><img src="{% static 'assets/img/logo.png' %}" alt=""></a>
+                <a href="index-2.html" class="navbar-brand"><img src="{% static 'img/logo.png' %}" alt=""></a>
             </div>
             <div class="collapse navbar-collapse" id="main-navbar">
                 <ul class="navbar-nav mr-auto w-100 justify-content-center">
@@ -229,8 +229,8 @@
                                         <div class="select">
                                             <select>
                                                 <option value="none">Select Catagory</option>
-                                                {% for i in categories %}
-                                                    <option value="none"> {{ i.name }}</option>
+                                                {% for ctg in categories %}
+                                                    <option value="none">{{ ctg.name }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
@@ -255,21 +255,20 @@
         <div class="row justify-content-center">
             <div class="col-lg-10 col-md-12 col-xs-12">
                 <div id="categories-icon-slider" class="categories-wrapper owl-carousel owl-theme">
-                {% for i in categories %}
-                    <div class="item">
-                        <a href="category.html">
-                            <div class="category-icon-item">
-                                <div class="icon-box">
-                                    <div class="icon">
-                                        <img src="{%  static 'img/category/img-1.png' %}" alt="">
+                    {% for ctg in categories %}
+                        <div class="item">
+                            <a href="category.html">
+                                <div class="category-icon-item">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <img src="/images/{{ ctg.image }}" alt="">
+                                        </div>
+                                        <h4>{{ ctg.name }}</h4>
                                     </div>
-                                    <h4>{% i.name %}</h4>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-
-                {% endfor %}
+                            </a>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -288,7 +287,7 @@
                             <span class="bg-green"><i class="lni-heart"></i></span>
                             <span><i class="lni-bookmark"></i></span>
                         </div>
-                        <a href="#"><img class="img-fluid" src="{%  static 'img/featured/img-1.jpg' %}" alt=""></a>
+                        <a href="#"><img class="img-fluid" src="{% static 'img/featured/img-1.jpg' %}" alt=""></a>
                     </figure>
                     <div class="feature-content">
                         <div class="product">
@@ -326,7 +325,7 @@
                             <span class="bg-green"><i class="lni-heart"></i></span>
                             <span><i class="lni-bookmark"></i></span>
                         </div>
-                        <a href="#"><img class="img-fluid" src="{%  static '/img/featured/img-2.jpg' %}" alt=""></a>
+                        <a href="#"><img class="img-fluid" src="{% static 'img/featured/img-2.jpg' %}" alt=""></a>
                     </figure>
                     <div class="feature-content">
                         <div class="product">
@@ -361,7 +360,7 @@
                             <span class="bg-green"><i class="lni-heart"></i></span>
                             <span><i class="lni-bookmark"></i></span>
                         </div>
-                        <a href="#"><img class="img-fluid" src="{%  static 'img/featured/img-3.jpg' %}" alt=""></a>
+                        <a href="#"><img class="img-fluid" src="assets/img/featured/img-3.jpg" alt=""></a>
                     </figure>
                     <div class="feature-content">
                         <div class="product">
@@ -399,7 +398,7 @@
                             <span class="bg-green"><i class="lni-heart"></i></span>
                             <span><i class="lni-bookmark"></i></span>
                         </div>
-                        <a href="#"><img class="img-fluid" src="{%  static 'img/featured/img-4.jpg' %}" alt=""></a>
+                        <a href="#"><img class="img-fluid" src="assets/img/featured/img-4.jpg" alt=""></a>
                     </figure>
                     <div class="feature-content">
                         <div class="product">
@@ -434,7 +433,7 @@
                             <span class="bg-green"><i class="lni-heart"></i></span>
                             <span><i class="lni-bookmark"></i></span>
                         </div>
-                        <a href="#"><img class="img-fluid" src="{%  static 'img/featured/img-5.jpg' %}" alt=""></a>
+                        <a href="#"><img class="img-fluid" src="assets/img/featured/img-5.jpg" alt=""></a>
                     </figure>
                     <div class="feature-content">
                         <div class="product">
@@ -472,7 +471,7 @@
                             <span class="bg-green"><i class="lni-heart"></i></span>
                             <span><i class="lni-bookmark"></i></span>
                         </div>
-                        <a href="#"><img class="img-fluid" src="{% static 'img/featured/img-6.jpg' %}" alt=""></a>
+                        <a href="#"><img class="img-fluid" src="assets/img/featured/img-6.jpg" alt=""></a>
                     </figure>
                     <div class="feature-content">
                         <div class="product">
@@ -514,7 +513,7 @@
                     <div class="item">
                         <div class="product-item">
                             <div class="carousel-thumb">
-                                <img class="img-fluid" src="{%  static 'img/product/img1.jpg' %}" alt="">
+                                <img class="img-fluid" src="assets/img/product/img1.jpg" alt="">
                                 <div class="overlay">
                                     <div>
                                         <a class="btn btn-common" href="ads-details.html">View Details</a>
@@ -556,7 +555,7 @@
                     <div class="item">
                         <div class="product-item">
                             <div class="carousel-thumb">
-                                <img class="img-fluid" src="{%  static 'img/product/img2.jpg' %}" alt="">
+                                <img class="img-fluid" src="assets/img/product/img2.jpg" alt="">
                                 <div class="overlay">
                                     <div>
                                         <a class="btn btn-common" href="ads-details.html">View Details</a>
@@ -1261,9 +1260,9 @@
 
 
 <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="{% static 'js/jquery-min.js' %}"></script>
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/jquery-min.js' %}"></script>
 <script src="{% static 'js/color-switcher.js' %}"></script>
 <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
 <script src="{% static 'js/waypoints.min.js' %}"></script>
