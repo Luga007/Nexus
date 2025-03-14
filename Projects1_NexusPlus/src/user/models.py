@@ -7,6 +7,7 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=100, null=False, blank=False)
     phone_number = models.CharField(max_length=13, null=False, blank=False)
     image = models.ImageField(upload_to='', null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return "%s %s" % (self.first_name, self.last_name)

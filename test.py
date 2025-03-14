@@ -28,6 +28,23 @@ k = 5
 # print(lisy)
 
 
+######
+# words = ["ааа","аа","ааа"]
+# words.sort()
+# print(words)
+# first, last = words[0], words[-1]
+# prefix = ''
+# for i in range(min(len(first), len(last))):
+#     if first[i] == last[i]:
+#         prefix += first[i]
+#     else:
+#         break
+# print(prefix)
 
 
-
+a = 'add'
+e = 'egg'
+a1 = set(a)
+e1 = set(e)
+if len(a1) == len(e1):
+    print(True)

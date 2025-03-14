@@ -59,7 +59,7 @@
                 <div id="categories-icon-slider" class="categories-wrapper owl-carousel owl-theme">
                     {% for ctg in categories %}
                         <div class="item">
-                            <a href="----------------------------------">
+                            <a href="{% url 'product' %}">
                                 <div class="category-icon-item">
                                     <div class="icon-box">
                                         <div class="icon">
@@ -95,7 +95,7 @@
                             <span class="bg-green"><i class="lni-heart"></i></span>
                             <span><i class="lni-bookmark"></i></span>
                         </div>
-                        <a href="#"><img class="img-fluid" src="/images/{{ product.main_image.0.image }}" alt=""></a>
+                        <a href="{% url 'details' pk=product.id %}"><img class="img-fluid" src="/images/{{ product.main_image.0.image }}" alt=""></a>
 
                     </figure>
                     <div class="feature-content">
@@ -103,7 +103,7 @@
                             <a href="#">{{ product.category }} > </a>
                             <a href="#">Cameras</a>
                         </div>
-                        <h4><a href="ads-details.html">{{ product.title }}...</a></h4>
+                        <h4><a href="{% url 'details' pk=product.id %}">{{ product.title }}...</a></h4>
                         <div class="meta-tag">
                                 <span>
                                 <a href="#"><i class="lni-user"></i> {{ product.user }}</a>
@@ -115,10 +115,10 @@
                                 <a href="#"><i class="lni-tag"></i> {{ product.brand }}</a>
                                 </span>
                         </div>
-                        <p class="dsc">{{product.description }}</p>
+                        <p class="dsc">{{product.description|slice:":200" }} ...</p>
                         <div class="listing-bottom">
-                            <h3 class="price float-left">${{ product.price }}</h3>
-                            <a href="{% url 'details'%}" class="btn btn-common float-right">View Details</a>
+                            <h3 class="price float-left">${{ product.price }}.00</h3>
+                            <a href="{% url 'details' pk=product.id %}" class="btn btn-common float-right">View Details</a>
                         </div>
                     </div>
                 </div>
