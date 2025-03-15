@@ -3,6 +3,7 @@ from category.models import Category, Region, Brand
 from product.models import Product, ProductImage, ProductView
 from django.db.models import Count
 from django.db.models import Prefetch
+from user.models import Profile
 
 # Create your views here.
 
@@ -17,4 +18,29 @@ def main(request):
         'region': region
     }
     return render(request, 'index-2.html', ctx)
+
+def about(request):
+    products = Product.objects.annotate()
+    user_c = Profile.objects.aggregate(userc=Count('first_name'))
+    product_c = Category.objects.aggregate(productc=Count('product'))
+    product_l = Product.objects.aggregate(locationc=Count('location'))
+    ctx = {
+        'user_count': user_c,
+        'product_count': product_c,
+        'location_count': product_l,
+    }
+    return render(request, 'about.html', ctx)
+
+def services(request):
+    user_c = Profile.objects.aggregate(userc=Count('first_name'))
+    product_c = Category.objects.aggregate(productc=Count('product'))
+    product_l = Product.objects.aggregate(locationc=Count('location'))
+    ctx = {
+        'user_count': user_c,
+        'product_count': product_c,
+        'location_count': product_l,
+    }
+    return render(request, 'services.html', ctx)
+
+
 

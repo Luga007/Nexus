@@ -2,23 +2,23 @@ from django.shortcuts import render
 from . import models
 from django.db.models import Prefetch
 from user.models import Profile
+from category.models import Category
+from django.db.models import Count, Sum
+from django.core.paginator import Paginator
 
 def products(request):
+    page = request.GET.get('page', 1)
     products = models.Product.objects.prefetch_related(
         Prefetch('images', queryset=models.ProductImage.objects.filter(is_main=True), to_attr='main_image'))
+    categories = Category.objects.filter(parent=None).annotate(count_pr=Count('product'))
+    paginator = Paginator(products, 2)
+    page_obj = paginator.get_page(page)
     ctx = {
         'products': products,
+        'categories': categories,
+        'page_obj': page_obj,
     }
     return render(request, 'product.html', ctx)
-
-
-# def details(request, pk):
-#     products = models.Product.objects.prefetch_related(
-#         Prefetch('images', queryset=models.ProductImage.objects.filter(is_main=True), to_attr='main_image'))
-#     ctx = {
-#         'products': products,
-#     }
-#     return render(request, 'details.html', ctx)
 
 
 def details(request, pk):

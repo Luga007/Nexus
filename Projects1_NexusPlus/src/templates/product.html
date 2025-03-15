@@ -19,13 +19,11 @@
                                         <i class="lni-target"></i>
                                         <div class="select">
                                             <select>
+
                                                 <option value="none">All Locations</option>
-                                                <option value="none">New York</option>
-                                                <option value="none">California</option>
-                                                <option value="none">Washington</option>
-                                                <option value="none">Birmingham</option>
-                                                <option value="none">Chicago</option>
-                                                <option value="none">Phoenix</option>
+                                                {% for product in products %}
+                                                <option value="none">{{ product.location }}</option>
+                                                {% endfor %}
                                             </select>
                                         </div>
                                     </div>
@@ -34,13 +32,10 @@
                                         <div class="select">
                                             <select>
                                                 <option value="none">Select Categories</option>
-                                                <option value="none">Mobiles</option>
-                                                <option value="none">Electronics</option>
-                                                <option value="none">Training</option>
-                                                <option value="none">Real Estate</option>
-                                                <option value="none">Services</option>
-                                                <option value="none">Training</option>
-                                                <option value="none">Vehicles</option>
+                                                {% for category in categories %}
+                                                <option value="none">{{ category.name }}</option>
+                                                {% endfor %}
+
                                             </select>
                                         </div>
                                     </div>
@@ -77,50 +72,18 @@
 
                         <div class="widget categories">
                             <h4 class="widget-title">All Categories</h4>
+
                             <ul class="categories-list">
+                                {% for category in categories %}
                                 <li>
+
                                     <a href="#">
-                                        <i class="lni-dinner"></i>
-                                        Hotel & Travels <span class="category-counter">(5)</span>
+                                        {{ category.name }} <span class="category-counter">{{ category.count_pr }}</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="lni-control-panel"></i>
-                                        Services <span class="category-counter">(8)</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="lni-github"></i>
-                                        Pets <span class="category-counter">(2)</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="lni-coffee-cup"></i>
-                                        Restaurants <span class="category-counter">(3)</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="lni-home"></i>
-                                        Real Estate <span class="category-counter">(4)</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="lni-pencil"></i>
-                                        Jobs <span class="category-counter">(5)</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="lni-display"></i>
-                                        Electronics <span class="category-counter">(9)</span>
-                                    </a>
-                                </li>
+                                {% endfor %}
                             </ul>
+
                         </div>
                         <div class="widget">
                             <h4 class="widget-title">Advertisement</h4>
@@ -165,7 +128,7 @@
                         <div class="tab-content">
                             <div id="grid-view" class="tab-pane fade">
                                 <div class="row">
-                                    {% for product in products %}
+                                    {% for product in page_obj %}
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                         <div class="featured-box">
                                             <figure>
@@ -210,13 +173,13 @@
                             </div>
                             <div id="list-view" class="tab-pane fade active show">
                                 <div class="row">
-                                    {% for product in products %}
+                                    {% for product in page_obj %}
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="featured-box">
                                             <figure>
-<span class="price-save">
-10% Save
-</span>
+                                                <span class="price-save">
+                                                10% Save
+                                                </span>
                                                 <div class="icon">
                                                     <span class="bg-green"><i class="lni-heart"></i></span>
                                                     <span><i class="lni-bookmark"></i></span>
@@ -231,15 +194,15 @@
                                                 </div>
                                                 <h4><a href="ads-details.html">{{ product.title }} ...</a></h4>
                                                 <div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> {{ product.user }}</a>
-</span>
                                                     <span>
-<a href="#"><i class="lni-map-marker"></i> {{ product.location }}</a>
-</span>
-                                                    <span>
-<a href="#"><i class="lni-tag"></i> {{ product.brnd }}</a>
-</span>
+                                                <a href="#"><i class="lni-user"></i> {{ product.user }}</a>
+                                                </span>
+                                                                                                    <span>
+                                                <a href="#"><i class="lni-map-marker"></i> {{ product.location }}</a>
+                                                </span>
+                                                                                                    <span>
+                                                <a href="#"><i class="lni-tag"></i> {{ product.brnd }}</a>
+                                                </span>
                                                 </div>
                                                 <p class="dsc">{{ product.description }}</p>
                                                 <div class="listing-bottom">
@@ -261,10 +224,19 @@
                     <div class="pagination-bar">
                         <nav>
                             <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                  {% if page_obj.has_previous %}
+                                        <li class="page-item"><a class="page-link active" href="?page=1">&laquo; first</a></li>
+                                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                                  {% endif %}
+                                  {% if page_obj.has_next %}
+                                       <li class="page-item"><a class="page-link active" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                                       <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">last &raquo;</a></li>
+                                  {% endif %}
+
+{#                                <li class="page-item"><a class="page-link active" href="#">1</a></li>#}
+{#                                <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+{#                                <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+{#                                <li class="page-item"><a class="page-link" href="#">Next</a></li>#}
                             </ul>
                         </nav>
                     </div>
