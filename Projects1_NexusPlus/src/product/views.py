@@ -13,10 +13,12 @@ def products(request):
     categories = Category.objects.filter(parent=None).annotate(count_pr=Count('product'))
     paginator = Paginator(products, 2)
     page_obj = paginator.get_page(page)
+
     ctx = {
         'products': products,
         'categories': categories,
         'page_obj': page_obj,
+        'countOfProducts': products.count(),
     }
     return render(request, 'product.html', ctx)
 

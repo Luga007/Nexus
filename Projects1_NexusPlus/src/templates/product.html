@@ -97,7 +97,7 @@
 
                     <div class="product-filter">
                         <div class="short-name">
-                            <span>Showing (1 - 12 products of 7371 products)</span>
+                            <span>Showing ({{page_obj.start_index}} - {{ page_obj.end_index}} products of {{ countOfProducts }} products)</span>
                         </div>
                         <div class="Show-item">
                             <span>Show Items</span>
@@ -149,15 +149,15 @@
                                                 </div>
                                                 <h4><a href="ads-details.html">{{ product.title }} ...</a></h4>
                                                 <div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> {{ product.title }}</a>
-</span>
                                                     <span>
-<a href="#"><i class="lni-map-marker"></i> {{ product.user }}</a>
-</span>
-                                                    <span>
-<a href="#"><i class="lni-tag"></i> {{ product.brand }}</a>
-</span>
+                                                    <a href="#"><i class="lni-user"></i> {{ product.title }}</a>
+                                                    </span>
+                                                                                                        <span>
+                                                    <a href="#"><i class="lni-map-marker"></i> {{ product.user }}</a>
+                                                    </span>
+                                                                                                        <span>
+                                                    <a href="#"><i class="lni-tag"></i> {{ product.brand }}</a>
+                                                    </span>
                                                 </div>
                                                 <p class="dsc">{{ product.description }}</p>
                                                 <div class="listing-bottom">
