@@ -18,7 +18,7 @@ def products(request):
         'products': products,
         'categories': categories,
         'page_obj': page_obj,
-        'countOfProducts': products.count(),
+        'countOfProducts': page,
     }
     return render(request, 'product.html', ctx)
 
@@ -42,6 +42,7 @@ def details(request, pk):
         "product": product,
         "posted_by": posted_by,
         "products_by_seller": products_by_seller,
+
 
     }
     return render(request, 'details.html', ctx)

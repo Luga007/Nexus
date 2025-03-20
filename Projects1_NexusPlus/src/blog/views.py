@@ -17,8 +17,12 @@ def blog(request):
 
 def post_list(request, pk):
     blogs = models.Blog.objects.get(pk=pk)
-    blogs1 = models.Blog.objects.prefetch_related(
-        Prefetch('images', queryset=models.BlogImage.objects.all(), to_attr='main_image'),
+    blogs1 = (
+        models.Blog.objects
+        .prefetch_related(
+            Prefetch('images', queryset=models.BlogImage.objects.all(), to_attr='main_image'),
+
+        )
     )
 
 
