@@ -47,5 +47,21 @@ def services(request):
     }
     return render(request, 'services.html', ctx)
 
+def contact(request):
+    ctx = {
+
+    }
+    return render(request, 'contact.html', ctx)
 
 
+def login(request):
+    ctx = {
+
+    }
+    return render(request, 'login.html', ctx)
+
+def register(request):
+    ctx = {
+
+    }
+    return render(request, 'register.html', ctx)
