@@ -54,14 +54,3 @@ def contact(request):
     return render(request, 'contact.html', ctx)
 
 
-def login(request):
-    ctx = {
-
-    }
-    return render(request, 'login.html', ctx)
-
-def register(request):
-    ctx = {
-
-    }
-    return render(request, 'register.html', ctx)

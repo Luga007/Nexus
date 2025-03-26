@@ -42,9 +42,11 @@ k = 5
 # print(prefix)
 
 
-a = 'add'
-e = 'egg'
-a1 = set(a)
-e1 = set(e)
-if len(a1) == len(e1):
-    print(True)
+# a = 'add'
+# e = 'egg'
+# a1 = set(a)
+# e1 = set(e)
+# if len(a1) == len(e1):
+#     print(True)
+
+
