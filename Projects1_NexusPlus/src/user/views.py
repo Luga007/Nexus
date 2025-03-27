@@ -31,7 +31,7 @@ def register(request):
     else:
         form = RegisterForm()
     ctx = {
-        'form': form
+        'forms': form
     }
     return render(request, 'register.html', ctx)
 
