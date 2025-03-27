@@ -28,30 +28,37 @@
                     <h3>
                         Register
                     </h3>
-                    <form class="login-form">
+                    <form class="login-form" method="post">
+                        {% csrf_token %}
                         <div class="form-group">
                             <div class="input-icon">
                                 <i class="lni-user"></i>
-                                <input type="text" id="Name" class="form-control" name="email" placeholder="Username">
+                                {{ form.firstname }}
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="input-icon">
                                 <i class="lni-envelope"></i>
-                                <input type="text" id="sender-email" class="form-control" name="email"
-                                       placeholder="Email Address">
+                                {{ form.username }}
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-icon">
                                 <i class="lni-lock"></i>
-                                <input type="password" class="form-control" placeholder="Password">
+                                 {{ form.email }}
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-icon">
                                 <i class="lni-lock"></i>
-                                <input type="password" class="form-control" placeholder="Retype Password">
+                                {{ form.password1 }}
+                            </div>
+                        </div>
+                               <div class="form-group">
+                            <div class="input-icon">
+                                <i class="lni-lock"></i>
+                                {{ form.password2 }}
                             </div>
                         </div>
                         <div class="form-group mb-3">

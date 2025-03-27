@@ -6,6 +6,7 @@ from django.db.models import Prefetch
 from user.models import Profile
 from blog.models import Blog
 
+
 # Create your views here.
 
 def main(request):
@@ -13,10 +14,12 @@ def main(request):
     products = Product.objects.prefetch_related(
         Prefetch('images', queryset=ProductImage.objects.filter(is_main=True), to_attr='main_image'))
     region = Region.objects.all()
+
     ctx = {
         'categories': categories,
         'products': products,
-        'region': region
+        'region': region,
+
     }
     return render(request, 'index-2.html', ctx)
 
