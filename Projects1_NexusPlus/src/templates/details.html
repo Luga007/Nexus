@@ -89,7 +89,11 @@
                         <div class="agent-inner">
                             <div class="agent-title">
                                 <div class="agent-photo">
+                                    {% if posted_by.image %}
                                     <a href="#"><img src="{{ posted_by.image.url }}" alt=""></a>
+                                    {% else %}
+                                    <p>No</p>
+                                    {% endif %}
                                 </div>
                                 <div class="agent-details">
                                     <h3><a href="#">{{ posted_by.first_name }} {{ posted_by.last_name }}</a></h3>

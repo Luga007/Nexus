@@ -4,6 +4,8 @@ from .forms import LoginForm, RegisterForm
 
 
 def login_view(request):
+    url = request.GET.get('url', None)
+    print(url)
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -12,7 +14,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('main')
+                return redirect(url)
     form = LoginForm()
     ctx = {
         'form': form

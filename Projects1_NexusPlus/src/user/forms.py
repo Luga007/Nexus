@@ -17,15 +17,13 @@ class RegisterForm(UserCreationForm):
     username = forms.CharField(max_length=50,
                                widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Username"}))
     email = forms.EmailField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Email"}))
-
+    password1 = forms.CharField(max_length=35,
+                                widget= forms.PasswordInput(attrs={'class': "form-control", "placeholder": "Password"}))
+    password2 = forms.CharField(max_length=35,
+                                widget=forms.PasswordInput(attrs={'class': "form-control", "placeholder": "Retype Password"}))
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
-        widgets = {
-            'password1': forms.PasswordInput(attrs={'class': "form-control", "placeholder": "Password"}),
-            'password2': forms.PasswordInput(attrs={'class': "form-control", "placeholder": "Retype Password"}),
-        }
-
     def save(self, commit=True):
         user = super().save()
         if user:

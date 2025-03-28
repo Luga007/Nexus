@@ -25,7 +25,7 @@ def main(request):
 
 def about(request):
     products = Product.objects.annotate()
-    user_c = Profile.objects.aggregate(userc=Count('first_name'))
+    user_c = Profile.objects.aggregate(userc=Count('firstname'))
     product_c = Category.objects.aggregate(productc=Count('product'))
     product_l = Product.objects.aggregate(locationc=Count('location'))
     blog_c = Profile.objects.aggregate(blogc=Count('blog'))
@@ -38,7 +38,7 @@ def about(request):
     return render(request, 'about.html', ctx)
 
 def services(request):
-    user_c = Profile.objects.aggregate(userc=Count('first_name'))
+    user_c = Profile.objects.aggregate(userc=Count('firstname'))
     product_c = Category.objects.aggregate(productc=Count('product'))
     product_l = Product.objects.aggregate(locationc=Count('location'))
     blog_c = Profile.objects.aggregate(blogc=Count('blog'))

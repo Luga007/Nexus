@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import models
 from django.db.models import Prefetch
 from user.models import Profile
 from category.models import Category
 from django.db.models import Count, Sum
 from django.core.paginator import Paginator
+from .forms import ProductForm
 
 def products(request):
     page = request.GET.get('page', 1)
@@ -46,3 +47,20 @@ def details(request, pk):
 
     }
     return render(request, 'details.html', ctx)
+
+def product_add(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render('main')
+    else:
+        form = ProductForm()
+    product = models.Product.objects.select_related('user').all()
+    category = Category.objects.filter(is_main=True)
+    ctx = {
+        'forms': form,
+        'categories': category,
+        'users': product,
+    }
+    return render(request, 'post-ads.html', ctx)
