@@ -4,7 +4,7 @@ from .forms import LoginForm, RegisterForm
 
 
 def login_view(request):
-    url = request.GET.get('url', None)
+    url = request.GET.get('url', 'product-add')
     print(url)
     if request.method == 'POST':
         form = LoginForm(request.POST)

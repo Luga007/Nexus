@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+  {% block css %}
+      <link rel="stylesheet" type="text/css" href="{%  static 'css/summernote.css' %}">
+  {% endblock css %}
 
 {% block content %}
 
@@ -96,8 +101,11 @@
                     </div>
                 </aside>
             </div>
+                <form method="post" style="width: 75%">
+                        {% csrf_token %}
             <div class="col-sm-12 col-md-8 col-lg-9">
                 <div class="row page-content">
+
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
                         <div class="inner-box">
                             <div class="dashboard-box">
@@ -105,22 +113,27 @@
                             </div>
                             <div class="dashboard-wrapper">
                                 <div class="form-group mb-3">
-                                    <form method="post">
-                                        {% csrf_token %}
+
+                                    <label>Title</label>
                                         {{ forms.title   }}
                                         <br>
-                                        {{ forms.description }}
-                                        <br>
-                                        {{ forms.price }}
-                                        <br>
-                                        {{ forms.created_at }}
-                                        <br>
-                                        {{ forms.category }}
-                                        <br>
+                                     <label>Brand</label>
                                         {{ forms.brand }}
                                         <br>
-                                        <button class="btn btn-common" type="Submit">Submit</button>
-                                    </form>
+                                    <label>Price</label>
+                                        {{ forms.price }}
+                                        <br>
+                                    <label>Category</label>
+                                        {{ forms.category }}
+                                        <br>
+                                    <label>Location</label>
+                                        {{ forms.location }}
+                                    <br>
+                                    <label>Description</label>
+                                        {{ forms.description }}
+                                        <br>
+
+
                                 </div>
 
                                 <div class="form-group mb-3">
@@ -233,16 +246,22 @@
                                                     Rules</a></label>
                                         </div>
                                     </div>
-                                    <button class="btn btn-common" type="button">Post Ad</button>
+                                    <input class="bth btn-common" type="submit" value="Post Ad" style="width: 90px; height: 37px" >
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
+                </form>
         </div>
     </div>
 </div>
 
+{% endblock %}
+
+{% block code %}
+	
 {% endblock %}
 

@@ -29,7 +29,7 @@ def post_list(request, pk):
     ctx = {
         'blogs': blogs,
         'blogs1': blogs1,
-        'blogsId': 1,
+        'blogsId': pk,
 
     }
     return render(request, 'single-post.html', ctx)

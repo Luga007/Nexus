@@ -45,7 +45,7 @@
                         <div class="entry-summary">
                             <p>{{ blog.description|slice:'510'}} ...</p>
                         </div>
-                        <a href="{% url 'post' blog.id %}" class="btn btn-common">Read More</a>
+                        <a href="{% url 'post' pk=blog.id %}" class="btn btn-common">Read More</a>
                     </div>
 
                 </div>

@@ -1,3 +1,5 @@
+import email
+
 from django.shortcuts import render
 from category.models import Category, Region, Brand
 from product.models import Product, ProductImage, ProductView
@@ -28,7 +30,7 @@ def about(request):
     user_c = Profile.objects.aggregate(userc=Count('firstname'))
     product_c = Category.objects.aggregate(productc=Count('product'))
     product_l = Product.objects.aggregate(locationc=Count('location'))
-    blog_c = Profile.objects.aggregate(blogc=Count('blog'))
+    blog_c = Blog.objects.aggregate(blogc=Count('id'))
     ctx = {
         'user_count': user_c,
         'product_count': product_c,
@@ -41,7 +43,7 @@ def services(request):
     user_c = Profile.objects.aggregate(userc=Count('firstname'))
     product_c = Category.objects.aggregate(productc=Count('product'))
     product_l = Product.objects.aggregate(locationc=Count('location'))
-    blog_c = Profile.objects.aggregate(blogc=Count('blog'))
+    blog_c = Blog.objects.aggregate(blogc=Count('id'))
     ctx = {
         'user_count': user_c,
         'product_count': product_c,
