@@ -131,7 +131,9 @@
                                     <br>
                                     <label>Description</label>
                                         {{ forms.description }}
-                                        <br>
+                                    <br>
+                                    <label>Condition</label>
+                                        {{ forms.condition }}
 
 
                                 </div>
@@ -262,6 +264,12 @@
 {% endblock %}
 
 {% block code %}
-	
-{% endblock %}
-
+    <script>
+      $('#summernote').summernote({
+          height: 250, // set editor height
+          minHeight: null, // set minimum height of editor
+          maxHeight: null, // set maximum height of editor
+          focus: false // set focus to editable area after initializing summernote
+      });
+    </script>
+{% endblock code %}

@@ -51,11 +51,16 @@ def details(request, pk):
 def product_add(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
+        print(form)
+        print(form.is_valid())
         if form.is_valid():
-            form.save()
+            products = form.save(commit=False)
+            print('USER', request.user.profile)
+            products.user = request.user.profile
             return render('main')
     else:
         form = ProductForm()
+
     product = models.Product.objects.select_related('user').all()
     category = Category.objects.filter(is_main=True)
     ctx = {

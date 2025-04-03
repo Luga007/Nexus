@@ -1,6 +1,6 @@
 from django import forms
 from .models import Product
-from category.models import Category, Region
+from category.models import Category, Region, Brand
 
 
 class ProductForm(forms.ModelForm):
@@ -19,9 +19,11 @@ class ProductForm(forms.ModelForm):
     )
     category = forms.ModelChoiceField(queryset=Category.objects.filter(is_main=True), widget=forms.Select(attrs={'class': 'tg-select form-control', 'label': 'Select category'}))
 
-    brand = forms.ModelChoiceField(queryset=Product.objects.select_related('brand').all(), widget=forms.Select(attrs={'class': 'tg-select form-control', 'label': 'Select brand'}))
+    brand = forms.ModelChoiceField(queryset=Brand.objects.all(), widget=forms.Select(attrs={'class': 'tg-select form-control', 'label': 'Select brand'}))
 
     location = forms.ModelChoiceField(queryset=Region.objects.all(), widget=forms.Select(attrs={'class': 'tg-select form-control', 'label': 'Select location'}))
+
+
     image = forms.ImageField()
     class Meta:
         model = Product
