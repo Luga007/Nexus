@@ -24,7 +24,7 @@ class Product(models.Model):
     status = models.SmallIntegerField(choices=status_types, default=1)
     price = models.IntegerField(null=True, blank=True)
     price_on_call = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now=False)
+    created_at = models.DateTimeField(auto_now=True, editable=False)
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

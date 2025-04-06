@@ -49,19 +49,21 @@ k = 5
 # if len(a1) == len(e1):
 #     print(True)
 
-def length_of_longest_substring(s):
-    char_set = set()  # Храним уникальные символы текущей подстроки
-    left = 0  # Левый указатель окна
-    max_length = 0  # Максимальная длина найденной подстроки
+# def length_of_longest_substring(s):
+#     char_set = set()  # Храним уникальные символы текущей подстроки
+#     left = 0  # Левый указатель окна
+#     max_length = 0  # Максимальная длина найденной подстроки
+#
+#     for right in range(len(s)):  # Двигаем правый указатель
+#         while s[right] in char_set:  # Если символ повторяется, сдвигаем левый указатель
+#             char_set.remove(s[left])
+#             left += 1
+#         char_set.add(s[right])  # Добавляем новый символ
+#         max_length = max(max_length, right - left + 1)  # Обновляем макс. длину
+#
+#     return max_length
+#
+# print(length_of_longest_substring("pwwkew"))  # Выведет: 3
 
-    for right in range(len(s)):  # Двигаем правый указатель
-        while s[right] in char_set:  # Если символ повторяется, сдвигаем левый указатель
-            char_set.remove(s[left])
-            left += 1
-        char_set.add(s[right])  # Добавляем новый символ
-        max_length = max(max_length, right - left + 1)  # Обновляем макс. длину
 
-    return max_length
-
-print(length_of_longest_substring("pwwkew"))  # Выведет: 3
 

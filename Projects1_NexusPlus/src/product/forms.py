@@ -14,9 +14,7 @@ class ProductForm(forms.ModelForm):
     price = forms.IntegerField(
         widget=forms.NumberInput(attrs={'class': 'form-control input-md', 'placeholder': 'Add your price'})
     )
-    created_at = forms.DateTimeField(
-        widget=forms.DateTimeInput(attrs={'class': 'form-control input-md', 'placeholder': 'Add your date', 'type': 'datetime-local'})
-    )
+
     category = forms.ModelChoiceField(queryset=Category.objects.filter(is_main=True), widget=forms.Select(attrs={'class': 'tg-select form-control', 'label': 'Select category'}))
 
     brand = forms.ModelChoiceField(queryset=Brand.objects.all(), widget=forms.Select(attrs={'class': 'tg-select form-control', 'label': 'Select brand'}))
@@ -24,7 +22,7 @@ class ProductForm(forms.ModelForm):
     location = forms.ModelChoiceField(queryset=Region.objects.all(), widget=forms.Select(attrs={'class': 'tg-select form-control', 'label': 'Select location'}))
 
 
-    image = forms.ImageField()
+
     class Meta:
         model = Product
         exclude = ['created_at', 'updated_at', 'user', 'status']

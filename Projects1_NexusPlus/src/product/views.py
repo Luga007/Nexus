@@ -6,6 +6,7 @@ from category.models import Category
 from django.db.models import Count, Sum
 from django.core.paginator import Paginator
 from .forms import ProductForm
+from django.contrib.auth import authenticate, login, logout
 
 def products(request):
     page = request.GET.get('page', 1)
@@ -48,24 +49,39 @@ def details(request, pk):
     }
     return render(request, 'details.html', ctx)
 
+
 def product_add(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
-        print(form)
-        print(form.is_valid())
         if form.is_valid():
-            products = form.save(commit=False)
-            print('USER', request.user.profile)
-            products.user = request.user.profile
-            return render('main')
+            product = form.save(commit=False)
+
+            if request.user.is_authenticated:
+                if not hasattr(request.user, 'profile'):
+                    Profile.objects.create(user=request.user)
+
+                product.user = request.user.profile
+                product.save()
+                return redirect('main')
     else:
         form = ProductForm()
 
     product = models.Product.objects.select_related('user').all()
     category = Category.objects.filter(is_main=True)
+
+    advertisement = models.Product.objects.all()
     ctx = {
         'forms': form,
         'categories': category,
         'users': product,
+        'advertisement': advertisement,
     }
     return render(request, 'post-ads.html', ctx)
+
+def logout_view(request):
+   logout(request)
+   return redirect('main')
+
+
+def dashboard(request):
+    return render(request, 'dashboard.html', {})

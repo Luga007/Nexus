@@ -111,16 +111,16 @@
                         <h4 class="widget-title">More Ads From Seller</h4>
                         <ul class="posts-list">
                             <li>
-
-                                <div class="widget-thumb">
-                                    <a href="#"><img src="{{ products.images }}" alt=""/></a>
-                                </div>
                                 {% for product in products_by_seller %}
+                                <div class="widget-thumb">
+                                    <a href="#"><img src="/images/{{ product.images.first.image }}" alt=""/></a>
+                                </div>
+
                                 <div class="widget-content">
                                     <h4><a href="#">{{ product.title }}</a></h4>
                                     <div class="meta-tag">
                                         <span>
-                                        <a href="#"><i class="lni-user"></i> {{ product.user }}</a>
+                                        <a href="#"><i class="lni-user"></i> {{ product.user.profile.firstname }}</a>
                                         </span>
                                                                                 <span>
                                         <a href="#"><i class="lni-map-marker"></i> {{ product.location }}</a>
