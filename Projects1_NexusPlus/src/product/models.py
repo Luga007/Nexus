@@ -19,7 +19,7 @@ class Product(models.Model):
     location = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=False)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=False)
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, blank=True)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     condition = models.SmallIntegerField(choices=condition_types, default=1)
     status = models.SmallIntegerField(choices=status_types, default=1)
     price = models.IntegerField(null=True, blank=True)
@@ -31,7 +31,7 @@ class Product(models.Model):
         return self.title
 
 class ProductView(models.Model):
-    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, null=False, blank=True)
     view_count = models.IntegerField(default=0)
 
 class ProductImage(models.Model):

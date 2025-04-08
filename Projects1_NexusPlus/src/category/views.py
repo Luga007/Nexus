@@ -6,7 +6,7 @@ from django.db.models import Prefetch
 
 # Create your views here.
 
-def category(request):
+def category_views(request):
     products = Product.objects.prefetch_related(
         Prefetch('images', queryset=ProductImage.objects.filter(is_main=True), to_attr='main_image'))
     category = Category.objects.filter(is_main=True)
