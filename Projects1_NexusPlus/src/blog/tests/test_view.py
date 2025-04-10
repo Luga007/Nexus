@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from ..models import Blog
 
 
-class CategoryTests(TestCase):
+class BlogTests(TestCase):
     def setUp(self):
         self.blog = Blog.objects.create(title='Blog', comments=7, description='sss', like=10, views=200)
 
