@@ -7,15 +7,11 @@ from category.views import category_views
 class CategoryTestCase(TestCase):
     def setUp(self):
         self.category = Category.objects.create(
-            name='Test Category', slug='test-category', is_main=True
+            name='test', slug='test', is_main=True
         )
 
-    # def test_category_list_view_status_code(self):
-    #     url = reverse('category')
-    #     response = self.client.get(url)
-    #     self.assertEqual(response.status_code, 200)
+    def test_category_list_view_status_code(self):
+        response = self.client.get(reverse('category'))
+        self.assertEqual(response.status_code, 200)
 
 
-    # def test_category_view_status(self):
-    #     response = self.client.get(reverse('category'))
-    #     self.assertTemplateUsed(response, 'category/product.html')

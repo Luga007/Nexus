@@ -16,6 +16,6 @@ class CategoryTests(TestCase):
         response = self.client.get(reverse('blog'))
         self.assertTemplateUsed(response, 'blog.html')
 
-    # def test_blog_list_view_context(self):
-    #     response = self.client.get(reverse('blog'))
-    #     self.assertContains(self.blog, response.context['blogs'])
+    def test_blog_list_view_context(self):
+        response = self.client.get(reverse('blog'))
+        self.assertIn(self.blog, response.context['blogs'])

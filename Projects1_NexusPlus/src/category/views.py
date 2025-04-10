@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from category.models import Category, Region, Brand
 from product.models import Product, ProductImage
 from django.db.models import Prefetch
@@ -18,4 +18,4 @@ def category_views(request):
            'region': region,
            'brand': brand,
            }
-    return render(request, 'category.html', ctx)
+    return HttpResponse(ctx)
