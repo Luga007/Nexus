@@ -21,7 +21,7 @@ class ProductForm(forms.ModelForm):
 
     location = forms.ModelChoiceField(queryset=Region.objects.all(), widget=forms.Select(attrs={'class': 'tg-select form-control', 'label': 'Select location'}))
 
-
+    condition = forms.ChoiceField(choices=Product.condition_types, widget=forms.Select(attrs={'class': 'form-control input-md'}))
 
     class Meta:
         model = Product
