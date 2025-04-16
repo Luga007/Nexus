@@ -11,7 +11,8 @@ from django.contrib.auth import authenticate, login, logout
 def products(request):
     page = request.GET.get('page', 1)
     products = models.Product.objects.prefetch_related(
-        Prefetch('images', queryset=models.ProductImage.objects.filter(is_main=True), to_attr='main_image'))
+        Prefetch('images', queryset=models.ProductImage.objects.filter(is_main=True), to_attr='main_image')
+    ).order_by('-created_at')
     categories = Category.objects.filter(parent=None).annotate(count_pr=Count('product'))
     paginator = Paginator(products, 2)
     page_obj = paginator.get_page(page)

@@ -5,6 +5,8 @@ from . import models
 from django.db.models import Prefetch
 from .models import Blog
 from django.core.paginator import Paginator
+from .forms import EmailForm
+from django.core.mail import send_mail
 
 def blog(request):
     page = request.GET.get('page', 1)
@@ -35,11 +37,24 @@ def post_list(request, pk):
     )
     category_blog = Blog.objects.annotate(counts=Count('id'))
 
+    success = False
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            to_email = form.cleaned_data['to_email']
+            name = form.cleaned_data['name']
+            message = form.cleaned_data['message']
+
+            send_mail(name, message, '', [to_email])
+            success = True
+    else:
+        form = EmailForm()
 
     ctx = {
         'blogs': blogs,
         'blogs1': blogs1,
         'blogsId': pk,
-        'category_blog': category_blog
+        'category_blog': category_blog,
+        'form': form
     }
     return render(request, 'single-post.html', ctx)
