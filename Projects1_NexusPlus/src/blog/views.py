@@ -8,6 +8,7 @@ from django.core.paginator import Paginator
 from .forms import EmailForm
 from django.core.mail import send_mail
 
+
 def blog(request):
     page = request.GET.get('page', 1)
     category = Category.objects.annotate(counts=Count('product'))
@@ -25,6 +26,7 @@ def blog(request):
         'countOfBlogs': page,
     }
     return render(request, 'blog.html', ctx)
+
 
 def post_list(request, pk):
     blogs = models.Blog.objects.get(pk=pk)
