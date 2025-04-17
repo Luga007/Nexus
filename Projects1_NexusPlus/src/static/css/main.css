@@ -4447,7 +4447,8 @@ blockquote {
 }
 
 #sidebar .posts-list .widget-thumb {
-    float: left
+    float: left;
+    width: 1px;
 }
 
 #sidebar .posts-list .widget-thumb a {

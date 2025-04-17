@@ -7,6 +7,7 @@ from .models import Blog
 from django.core.paginator import Paginator
 from .forms import EmailForm
 from django.core.mail import send_mail
+from product.models import Product, ProductImage
 
 
 def blog(request):
@@ -18,6 +19,8 @@ def blog(request):
     category_blog = Blog.objects.annotate(counts=Count('id'))
     paginator = Paginator(blogs, 2)
     page_obj = paginator.get_page(page)
+
+
     ctx = {
         'categories': category,
         'blogs': blogs,
