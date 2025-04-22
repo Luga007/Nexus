@@ -51,7 +51,7 @@ def details(request, pk):
     return render(request, 'details.html', ctx)
 
 
-def product_add(request):
+def product_add(request, name, pk):
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
@@ -71,6 +71,9 @@ def product_add(request):
     category = Category.objects.filter(is_main=True)
 
     advertisement = models.Product.objects.all()
+    # product1 = models.Product.objects.filter(name=name, pk=pk)
+    # product1.delete()
+
     ctx = {
         'forms': form,
         'categories': category,

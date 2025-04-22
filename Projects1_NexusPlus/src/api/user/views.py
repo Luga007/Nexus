@@ -5,6 +5,7 @@ from rest_framework.views import status
 from .serializers import UserSerializer
 from user.models import Profile
 
+
 @api_view(['GET', 'POST'])
 def receive_ctg_list(request):
     if request.method == 'GET':
@@ -17,11 +18,12 @@ def receive_ctg_list(request):
             serializer.save()
             return Response({"data": "success"}, status=status.HTTP_201_CREATED)
 
+
 @api_view(['GET', 'PUT', 'DELETE'])
 def grain_ctg(request, pk):
     try:
         profile = Profile.objects.get(pk=pk)
-    except Profile.DoesNotExits:
+    except Profile.DoesNotExist:
         return Response({'error': 'Profile does not exist'})
 
     if request.method == 'GET':

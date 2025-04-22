@@ -1,8 +1,10 @@
 from rest_framework.response import Response
 from rest_framework.views import status
+from rest_framework.decorators import api_view
+
 from category.models import Category
 from .serializers import CategorySerializer
-from rest_framework.decorators import api_view
+
 
 
 
@@ -11,7 +13,6 @@ def get_list_ctg(request):
     if request.method == 'GET':
         category = Category.objects.all()
         result = CategorySerializer(category, many=True)
-        print(result.data)
         return Response({'result': result.data})
     elif request.method == 'POST':
         serializer = CategorySerializer(data=request.data)
