@@ -98,10 +98,10 @@
                         {% for blog in blogs %}
                         <li>
                             <div class="widget-thumb">
-                                <a href="#"><img src="/images/{{ blog.images.image }}" alt=""/></a>
+{#                                <a href="#"><img src="/images/{{ blog.images.image }}" alt=""/></a>#}
                             </div>
                             <div class="widget-content">
-                                <a href="#">{{ blog.title|slice:":20"}} ...</a>
+                                <a href="{% url 'post' pk=blog.id %}">{{ blog.title|slice:":20"}} ...</a>
                                 <span><i class="icon-calendar">{{ blog.date }}</i></span>
                             </div>
                             <div class="clearfix"></div>

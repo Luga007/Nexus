@@ -1,9 +1,12 @@
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.views import status
+from rest_framework.views import status, APIView
 
+from product.models import Product
 from .serializers import UserSerializer
 from user.models import Profile
+from ..product.serializers import ProductSerializer
 
 
 @api_view(['GET', 'POST'])
@@ -37,5 +40,17 @@ def grain_ctg(request, pk):
     elif request.method == 'DELETE':
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ProductViewSet(APIView):
+    def get(self, request):
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response({'result': serializer.data})
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
