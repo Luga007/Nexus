@@ -54,3 +54,7 @@ class ProductViewSet(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+def somethingTOtest(request):
+    pass
+
+
