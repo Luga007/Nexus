@@ -11,6 +11,6 @@ urlpatterns = [
     path('blogmixPk/<int:pk>', BlogMixinsViewPk.as_view(), name='BlogmixPk'),
 
     path('blogPk/', BlogGenericView.as_view(), name='blog_generic'),
-    path('blogPk/<int:pk>/', BlogGenericViewPk.as_view(), name='blog_genericPk'),
+    path('blogPk/<int:pk>/', BlogGenericViewPk.as_view(), name='blog_genericPk')
 
 ]
