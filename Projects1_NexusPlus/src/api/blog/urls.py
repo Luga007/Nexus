@@ -13,4 +13,5 @@ urlpatterns = [
     path('blogPk/', BlogGenericView.as_view(), name='blog_generic'),
     path('blogPk/<int:pk>/', BlogGenericViewPk.as_view(), name='blog_genericPk')
 
+
 ]
