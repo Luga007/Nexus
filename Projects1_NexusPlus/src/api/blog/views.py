@@ -4,12 +4,13 @@ from rest_framework.decorators import api_view
 from rest_framework.views import status, APIView
 from rest_framework.generics import GenericAPIView
 from rest_framework import mixins
+from rest_framework.viewsets import ModelViewSet
 
 
 from .serializers import BlogSerializer
 from blog.models import Blog
 
-# 1. ------------------------------------------------------------------------------------------
+# 0. ------------------------------------------------------------------------------------------
 
 @api_view(['GET', 'POST'])
 def obtain_list_tg(request):
@@ -45,7 +46,7 @@ def fraction_ctg(request, pk):
         blog.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# 2. ---------------------------------------------------------------------------------------------------
+# 1. ---------------------------------------------------------------------------------------------------
 
 class BlogViewSet(APIView):
     def get(self, request):
@@ -83,7 +84,7 @@ class BlogViewPk(APIView):
         blog.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# 3. --------------------------------------------------------
+# 2. --------------------------------------------------------
 
 class BlogGenericView(GenericAPIView):
     queryset = Blog.objects.all()
@@ -157,6 +158,11 @@ class BlogMixinsViewPk(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixin
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+class BlogViewSets(ModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
 
 
 
