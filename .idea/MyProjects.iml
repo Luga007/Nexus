@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Projects1_NexusPlus/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Projects1_NexusPlus/nexus_venv" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.12 (Gg)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
