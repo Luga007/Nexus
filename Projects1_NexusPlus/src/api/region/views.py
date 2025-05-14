@@ -2,23 +2,26 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.views import APIView
-from rest_framework.views import status
+from rest_framework.views import APIView, status
 from rest_framework.generics import GenericAPIView
 from rest_framework import mixins
+from rest_framework.permissions import IsAuthenticated
 
 from category.models import Region
 from .serializer import RegionSerializer
 
 # 1.
+
+
 class RegionApiView(APIView):
+    permission_classes = (IsAuthenticated,)
     def get(self, request):
         region = Region.objects.all()
         serializer = RegionSerializer(region, many=True)
         return Response({'results': serializer.data})
 
     def post(self, request):
-        res = RegionSerializer(data=request.date)
+        res = RegionSerializer(data=request.data)
         if res.is_valid():
             res.save()
             return Response({'success': res.data}, status=status.HTTP_201_CREATED)
@@ -94,8 +97,9 @@ class RegionGenericViewPk(GenericAPIView):
         region.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# 3.
-class RegionMixinsView(mixins.ListModelMixin, mixins.CreateModelMixin, GenericAPIView):
+
+#3
+class RegionMixinsView(GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
     def get(self, request, *args, **kwargs):
@@ -125,13 +129,13 @@ class RegionGenericAPIView(ListCreateAPIView):
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
     filter_backends = [SearchFilter]
-    lookup_field = ['title', 'description']
+    search_fields = ['title', 'description']
 
 
 class RegionDetailGenericAPIView(ListCreateAPIView):
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
-    lookup_field = ['slug']
+    lookup_field = 'slug'
 
 
 
